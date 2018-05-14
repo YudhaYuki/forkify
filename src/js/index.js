@@ -58,9 +58,28 @@ elements.searchResPages.addEventListener('click', e => {
     * RECIPE CONTROLLER
 */
 
-const controlRecipe = () => {
-    const id = window.location.hash;
+const controlRecipe = async () => {
+
+    // Get ID from URL
+    const id = window.location.hash.replace('#', '');
     console.log(id);
+
+    if (id) {
+        // Prepare UI for changes
+
+        // Creating new recipe object
+        state.recipe = new Recipe(id);
+
+        // Get recipe data
+        await state.recipe.getRecipe();
+
+        // Calculate Serving and Time
+        state.recipe.calcTime();
+        state.recipe.calcServings();
+
+        // Render the recipe
+        console.log(state.recipe);
+    }
 };
 
-window.addEventListener('hashchange', controlRecipe)
+window.addEventListener('hashchange', controlRecipe);
