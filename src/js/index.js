@@ -1,13 +1,15 @@
+// f7c0cce3d19eae6cad084e582751ce9f
+// http://food2fork.com/api/search
 
-// Import
-import str from './models/Search';
 
-// import by specific function from a document
-// import {add as a, multiply as m, ID} from './views/searchView';
+import axios from 'axios';
 
-//Import basically everything
-import * as searchView from './views/searchView';
+// How we handle promises with async await
+// SO the result of the value that we start here will then be saved into the res variable
+async function getResults(query) {
+    const key = 'f7c0cce3d19eae6cad084e582751ce9f';
+    const res = await axios(`http://food2fork.com/api/search?key=${key}&q=${query}`);
+    console.log(res);
+}
 
-// console.log(`Using imported function! ${a(ID, 2)} and ${m(3,5)}. ${str}`);
-
-console.log(`Using imported function! ${searchView.add(searchView.ID, 2)} and ${searchView.multiply(searchView.ID,5)}. ${str}`);
+getResults();
