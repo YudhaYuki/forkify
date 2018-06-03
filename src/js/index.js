@@ -108,3 +108,13 @@ const controlRecipe = async () => {
 // How to add the same event listener to the different event
 // So we just went from two lines above to just one line of code
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// Handling recipe button clicks
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+        state.recipe.updateServings('dec');
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        state.recipe.updateServings('inc');
+    }
+    console.log(state.recipe);
+});
